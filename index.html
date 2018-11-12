@@ -9,11 +9,13 @@
   <div id="app">
     <v-app>
       <v-content>
+        <!-- <v-flex > -->
         <v-container>
           <template>
-            <v-flex xs12>
+            <v-flex xs12 md12>
             <v-toolbar class="white--text" color="#0D47A1">
-              <v-flex xs12></v-flex>
+              <v-flex md xs></v-flex>
+              
               <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
               <v-toolbar-title>Jon DeWent</v-toolbar-title>
               <v-spacer></v-spacer>
@@ -22,6 +24,7 @@
                 <v-btn class="white--text" flat>About Me</v-btn>
                 <v-btn class="white--text" flat>Experience</v-btn>
               </v-toolbar-items>
+            </v-flex>
             </v-toolbar>
           </v-flex>
           </template>
@@ -56,12 +59,12 @@
                     <v-card-title  primary-title>
                     <div>
                       In 2017 I had the pleasure of backpacking in Yosemite
-                      Nation Park with my wife and parents
+                      Nation Park.
                     </div>
                   </v-card-title>
                   </v-card>
 
-                  <v-card style="align-content: center">
+                  <!-- <v-card style="align-content: center">
                       <v-card-title primary-title>
                         <div>
                           <h3 class="headline mb-0">Hobbies</h3>
@@ -76,10 +79,10 @@
                       <v-card-title  primary-title>
                       <div>
                         In 2017 I had the pleasure of backpacking in Yosemite
-                        Nation Park with my wife and parents
+                        Nation Park.
                       </div>
                     </v-card-title>
-                    </v-card>
+                    </v-card> -->
 
 
                 </v-flex>
@@ -90,6 +93,7 @@
         
       </v-layout>
         </v-container>
+        <!-- </v-flex> -->
       </v-content>
     </v-app>
   </div>
