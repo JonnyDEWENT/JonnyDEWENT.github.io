@@ -9,12 +9,9 @@
   <div id="app">
     <v-app>
       <v-content>
-          <v-flex >
         <v-container>
           <template>
-            <v-flex xs6>
             <v-toolbar class="white--text" color="#0D47A1">
-              <!-- <v-flex xs12></v-flex> -->
               <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
               <v-toolbar-title>Jon DeWent</v-toolbar-title>
               <v-spacer></v-spacer>
@@ -24,10 +21,9 @@
                 <v-btn class="white--text" flat>Experience</v-btn>
               </v-toolbar-items>
             </v-toolbar>
-          </v-flex>
           </template>
           <v-layout style = "background-color: rgb(147, 168, 226)" row align-start>
-            <v-flex xs6 md6>
+            <v-flex md6>
           <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
                     <v-img 
           :src="`profile.jpg`"
@@ -39,10 +35,9 @@
     </v-flex>
     <v-flex md6>
       <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
-          <v-flex xs6 md6>
           <template>
               <v-layout>
-                <v-flex xs3 sm9 offset-sm3>
+                <v-flex xs12 sm9 offset-sm3>
                   <v-card style="align-content: center">
                     <v-card-title primary-title>
                       <div>
@@ -87,13 +82,11 @@
                 </v-flex>
               </v-layout>
             </template>
-          </v-flex>
       </v-layout>
     </v-flex>
         
       </v-layout>
         </v-container>
-          </v-flex>
       </v-content>
     </v-app>
   </div>
