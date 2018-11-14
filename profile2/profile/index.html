@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body style="text-emphasis-color: white">
+  <div id="app">
+    <v-app>
+      <v-content>
+        <!-- <v-flex > -->
+        <v-container>
+          <template>
+            <v-flex xs12 md12>
+            <v-toolbar class="white--text" color="#0D47A1">
+
+              
+              <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
+              <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
+              <v-spacer md></v-spacer>
+              <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn class="white--text" flat>Projects</v-btn>
+                <v-btn class="white--text" flat>About Me</v-btn>
+                <v-btn class="white--text" flat>Experience</v-btn>
+              </v-toolbar-items>
+
+            </v-toolbar>
+          </v-flex>
+          </template>
+          <v-layout style = "background-color: rgb(147, 168, 226)" row align-start>
+            <v-flex md6>
+          <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
+            <v-flex xs12>
+                    <v-img 
+          :src="`profile.jpg`"
+          aspect-ratio="1"
+          class="grey lighten-2"
+          size="4"
+                    >
+                    </v-flex>
+      </v-layout>
+    </v-flex>
+    <v-flex md6>
+      <v-layout v-if="$mq != 'mobile'" class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
+        <v-flex xs0>
+          <template>
+              <v-layout>
+                <v-flex xs0 sm9 offset-sm3>
+                  <v-card style="align-content: center">
+                    <v-card-title primary-title>
+                      <div>
+                        <h3 class="headline mb-0">Hobbies</h3>
+                        <div>Backpacking</div>
+                      </div>
+                    </v-card-title>
+
+                    <v-img
+                      src="yosemite.jpg"
+                      aspect-ratio="2.75"
+                    ></v-img>
+                    <v-card-title  primary-title>
+                    <div>
+                      In 2017 I had the pleasure of backpacking in Yosemite
+                      Nation Park.
+                    </div>
+                  </v-card-title>
+                  </v-card>
+
+
+
+
+                </v-flex>
+              </v-layout>
+            </template>
+          </v-flex>
+      </v-layout>
+    </v-flex>
+        
+      </v-layout>
+        </v-container>
+        <!-- </v-flex> -->
+      </v-content>
+    </v-app>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({ el: '#app' })
+  </script>
+</body>
+</html>
