@@ -42,7 +42,7 @@
       </v-layout>
     </v-flex>
     <v-flex md6>
-      <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
+      <v-layout v-if="$mq != 'mobile'" class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
         <v-flex xs0>
           <template>
               <v-layout>
@@ -67,25 +67,7 @@
                   </v-card-title>
                   </v-card>
 
-                  <!-- <v-card style="align-content: center">
-                      <v-card-title primary-title>
-                        <div>
-                          <h3 class="headline mb-0">Hobbies</h3>
-                          <div>Backpacking</div>
-                        </div>
-                      </v-card-title>
-  
-                      <v-img
-                        src="yosemite.jpg"
-                        aspect-ratio="2.75"
-                      ></v-img>
-                      <v-card-title  primary-title>
-                      <div>
-                        In 2017 I had the pleasure of backpacking in Yosemite
-                        Nation Park.
-                      </div>
-                    </v-card-title>
-                    </v-card> -->
+
 
 
                 </v-flex>
