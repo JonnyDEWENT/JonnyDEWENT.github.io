@@ -170,7 +170,7 @@
                 </v-btn>
                 <v-list>
                   <v-list-tile v-for="(item,index) in items" @click="">
-                    <v-list-tile-title>{{ item }}</v-list-tile-title>
+                    <v-list-tile-title @click ="screen = index+1">{{ item }}</v-list-tile-title>
                   </v-list-tile>
                 </v-list>
               </v-menu>
@@ -310,7 +310,7 @@
       el: '#app',
       data: {
         items: [
-          "Projects", "About Me", "Experience"
+          "Home","Projects", "About Me", "Experience"
         ],
 
           backpacking: [
