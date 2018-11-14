@@ -162,7 +162,6 @@
 
         <!-- Rendering Menu -->
         <v-container class="hidden-lg-and-up">
-          <v-flex xs12 md12>
             <v-toolbar class="white--text" color="#0D47A1">
               <v-menu offset-y class="hidden-lg-and-up">
                 <v-btn slot="activator" color="#0D47A1" dark align-content="center">
@@ -190,6 +189,7 @@
 
 
             <!-- Home Screen -->
+            <v-layout v-if="screen === 1">
             <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
               <v-flex xs12>
                 <v-img :src="`profile.jpg`" aspect-ratio="1" class="grey lighten-2" size="4">
@@ -236,10 +236,12 @@
                      
                 </v-flex>
               </v-layout>
+              </v-layout>
             <!-- end of home screen -->
 
-            <v-flex>          
+            <!-- <v-flex>           -->
               <!-- About me screen -->
+              <v-layout v-if="screen === 3">
               <v-layout class = "pa-4" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
@@ -294,6 +296,7 @@
                 </template>
               </v-flex>
             </v-layout>
+              </v-layout>
             </v-flex>
 
         </v-container>
