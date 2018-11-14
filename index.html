@@ -17,10 +17,14 @@
             <v-toolbar class="white--text" color="#0D47A1">
 
               
-              <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
+              <v-toolbar-side-icon class="hidden-md-and-up">
+                  <v-btn class="white--text" flat>Projects</v-btn>
+                  <v-btn class="white--text" flat>About Me</v-btn>
+                  <v-btn class="white--text" flat>Experience</v-btn>
+              </v-toolbar-side-icon>
               <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-toolbar-items>
+              <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn class="white--text" flat>Projects</v-btn>
                 <v-btn class="white--text" flat>About Me</v-btn>
                 <v-btn class="white--text" flat>Experience</v-btn>
@@ -47,7 +51,7 @@
         <v-flex xs0>
           <template>
               <v-layout>
-                <v-flex xs0 sm9 offset-sm3>
+                <v-flex >
                   <v-card style="align-content: center">
                     <v-card-title primary-title>
                       <div>
@@ -67,18 +71,49 @@
                     </div>
                   </v-card-title>
                   </v-card>
-
-
-
-
                 </v-flex>
               </v-layout>
             </template>
           </v-flex>
       </v-layout>
     </v-flex>
-        
       </v-layout>
+
+
+<!-- Mobile Rendering -->
+
+<v-flex class="hidden-md-and-up">
+    <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
+      <v-flex xs0>
+        <template>
+            <v-layout>
+              <v-flex >
+                <v-card style="align-content: center">
+                  <v-card-title primary-title>
+                    <div>
+                      <h3 class="headline mb-0">Hobbies</h3>
+                      <div>Backpacking</div>
+                    </div>
+                  </v-card-title>
+
+                  <v-img
+                    src="yosemite.jpg"
+                    aspect-ratio="2.75"
+                  ></v-img>
+                  <v-card-title  primary-title>
+                  <div>
+                    In 2017 I had the pleasure of backpacking in Yosemite
+                    Nation Park.
+                  </div>
+                </v-card-title>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </template>
+        </v-flex>
+    </v-layout>
+  </v-flex>
+
         </v-container>
         <!-- </v-flex> -->
       </v-content>
