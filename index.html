@@ -105,7 +105,58 @@
 
 <!-- Mobile Rendering -->
 <v-container class="hidden-md-and-up">
-  <!-- <template> -->
+  
+
+    <v-flex xs12 md12>
+        <v-toolbar class="white--text" color="#0D47A1">
+
+          
+
+
+            <v-menu offset-y class="hidden-md-and-up">
+                <v-btn
+                  slot="activator"
+                  color="#0D47A1"
+                  dark
+                  align-content="center"
+                  
+                >
+                  Options
+                </v-btn>
+                <v-list>
+                  <v-list-tile
+                    v-for="(item,index) in items"
+                    
+                    @click=""
+                  >
+                    <v-list-tile-title>{{ item }}</v-list-tile-title>
+                  </v-list-tile>
+                </v-list>
+              </v-menu>
+
+
+
+          </v-toolbar-side-icon>
+          <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items class="hidden-md-and-down">
+            <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
+            <v-btn class="white--text" flat @click="screen = 2">About Me</v-btn>
+            <v-btn class="white--text" flat @click="screen = 2">Experience</v-btn>
+          </v-toolbar-items>
+
+        </v-toolbar>
+        <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
+        <v-flex xs12>
+                <v-img 
+      :src="`profile.jpg`"
+      aspect-ratio="1"
+      class="grey lighten-2"
+      size="4"
+                >
+                </v-flex>
+  </v-layout>
+
 <v-flex >
     <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
       <v-flex xs0>
