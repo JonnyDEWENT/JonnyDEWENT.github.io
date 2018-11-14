@@ -1,50 +1,181 @@
-
 <!DOCTYPE html>
 <html>
 
-  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
+
 <body style="text-emphasis-color: white">
   <div id="app">
     <v-app>
-      <v-content>
-        <!-- <v-flex > -->
+      <v-content style="background-color: rgb(123, 131, 131)">
+
+        <!-- This is the rendering section for computers lg & up -->
         <v-container class="hidden-md-and-down">
-          <template>
+          <template name>
             <v-flex xs12 md12>
-            <v-toolbar class="white--text" color="#0D47A1">
 
-              
-
-
+              <!-- Creating Menu -->
+              <v-toolbar class="white--text" color="#0D47A1">
                 <v-menu offset-y class="hidden-md-and-up">
-                    <v-btn
-                      slot="activator"
-                      color="#0D47A1"
-                      dark
-                      align-content="center"
-                      
-                    >
-                    <!-- <v-toolbar-side-icon> -->
-                      Options
-                    </v-btn>
-                    <v-list>
-                      <v-list-tile
-                        v-for="(item,index) in items"
+                  <v-btn slot="activator" color="#0D47A1" dark align-content="center">
+                    Options
+                  </v-btn>
+                  <v-list>
+                    <v-list-tile v-for="(item,index) in items" @click="">
+                      <v-list-tile-title>{{ item }}</v-list-tile-title>
+                    </v-list-tile>
+                  </v-list>
+                </v-menu>
+
+                </v-toolbar-side-icon>
+                <v-toolbar-title class="xs3">Jon DeWent</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items class="hidden-md-and-down">
+                    <v-btn class="white--text" flat @click="screen = 1"><v-icon>home</v-icon></v-btn>
+                  <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
+                  <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
+                  <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
+                </v-toolbar-items>
+
+              </v-toolbar>
+            </v-flex>
+          </template>
+
+          <!-- Body layout -->
+          <!-- Home Screen -->
+          <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
+            <v-flex lg6 md6 xl6>
+              <v-layout  style="background-color: rgb(147, 168, 226)" column>
+                <v-flex xs12 md6 lg5 xl5 class ="pa-5">
+                  <v-img :src="`profile.jpg`" aspect-ratio="1.1" size="4">
+                </v-flex>
+              </v-layout>
+            </v-flex>
+            <v-flex lg6 md6 xl6>
+              <v-layout style="background-color: rgb(147, 168, 226)" column>
+                <v-flex md5 lg5 xl5 class = "pa-4">
+                      <v-flex class = "pa-4">
+                        <v-card style="align-content: center" >
+                          <v-card-title primary-title>
+                            <div>
+                              <h3 class="headline mb-0">Summary</h3>
+                              <br>
+                              <div>I am software developer who enjoys utilizing a multitude 
+                                of tools to create innovative solutions for real world
+                                problems. I enjoy developing frontend and backend software for many
+                                platforms incuding mobile, web, and desktop.
+                              </div>
+                            </div>
+                          </v-card-title>
+                          <v-card-title primary-title>
+                          </v-card-title>
+                        </v-card>
+                      </v-flex>
+                        <v-flex class = "pa-4">
+
+                        <v-card style="align-content: center">
+                        <v-card-title primary-title>
+                            <div>
+                              <h3 class="headline mb-0">"If it doesn't challenge you it 
+                                doesn't change you."
+                              </h3>
+                              <br>
+                              <div>As someone who believes in the importance of personal growth, I welcome the opportunity
+                                to take on new and exciting challenges.
+                                I continually strive to learn new skills that will improve my
+                                ability to develop quality applications. 
+                                </div>
+                              </div>
+                        </v-card-title>
+                      </v-card>
+                    </v-flex>
+                     
+                </v-flex>
+              </v-layout>
+            </v-flex>
+
+          </v-layout>
+
+
+          <!-- About Me -->
+          <v-layout class = "pa-4" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
+              <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
+                <template>
+                  <v-layout>
+                    <v-flex class = "pa-4">
+
+                      <!-- Backpacking Card -->
+                      <v-card style="align-content: center">
+                        <v-card-title primary-title justify-center>
+                          <div  >
+                            <h2 class="headline mb-0">Backpacking</h2>
+                          </div>
+                        </v-card-title>
+
+                        <template>
+                            <v-carousel class = "pa-4">
+                              <v-carousel-item
+                                v-for="(item,i) in backpacking"
+                                :key="i"
+                                :src="item"
+                              ></v-carousel-item>
+                            </v-carousel>
+                          </template>
                         
-                        @click=""
-                      >
-                        <v-list-tile-title>{{ item }}</v-list-tile-title>
-                      </v-list-tile>
-                    </v-list>
-                  </v-menu>
+                      </v-card>
+                    </v-flex>
+                  </v-layout>
+                  <v-layout>
+                      <v-flex class="pa-4">
 
+                          <v-card style="align-content: center">
+                          <v-card-title primary-title>
+                              <div>
+                                <h3 class="headline mb-0">Races</h3>
+                              </div>
+                            </v-card-title>
+    
+                            <template>
+                                <v-carousel>
+                                  <v-carousel-item
+                                    v-for="(item,i) in races"
+                                    :key="i"
+                                    :src="item"
+                                  ></v-carousel-item>
+                                </v-carousel>
+                              </template>
+                            
+                              </v-card>
 
+                      </v-flex>
+                    </v-layout>
+                </template>
+              </v-flex>
+            </v-layout>
+            <!-- End of About Me -->
 
+        </v-container>
+
+        <!-- This is the Mobile Rendering section -->
+
+        <!-- Rendering Menu -->
+        <v-container class="hidden-lg-and-up">
+          <v-flex xs12 md12>
+            <v-toolbar class="white--text" color="#0D47A1">
+              <v-menu offset-y class="hidden-lg-and-up">
+                <v-btn slot="activator" color="#0D47A1" dark align-content="center">
+                  Options
+                </v-btn>
+                <v-list>
+                  <v-list-tile v-for="(item,index) in items" @click="">
+                    <v-list-tile-title>{{ item }}</v-list-tile-title>
+                  </v-list-tile>
+                </v-list>
+              </v-menu>
               </v-toolbar-side-icon>
-              <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
+              <v-toolbar-title class="xs3">Jon DeWent</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-toolbar-items class="hidden-md-and-down">
                 <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
@@ -53,160 +184,149 @@
               </v-toolbar-items>
 
             </v-toolbar>
-          </v-flex>
-          </template>
-          <v-layout v-if= "screen === 1" style = "background-color: rgb(147, 168, 226)" row align-start>
-            <v-flex md6>
-          <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
-            <v-flex xs12>
-                    <v-img 
-          :src="`profile.jpg`"
-          aspect-ratio="1"
-          class="grey lighten-2"
-          size="4"
-                    >
-                    </v-flex>
-      </v-layout>
-    </v-flex>
-    <v-flex>
-      <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
-        <v-flex xs0>
-          <template>
-              <v-layout>
-                <v-flex >
-                  <v-card style="align-content: center">
-                    <v-card-title primary-title>
-                      <div>
-                        <h3 class="headline mb-0">Hobbies</h3>
-                        <div>Backpacking</div>
-                      </div>
-                    </v-card-title>
-
-                    <v-img
-                      src="yosemite.jpg"
-                      aspect-ratio="2.75"
-                    ></v-img>
-                    <v-card-title  primary-title>
-                    <div>
-                      In 2017 I had the pleasure of backpacking in Yosemite
-                      Nation Park.
-                    </div>
-                  </v-card-title>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-            </template>
-          </v-flex>
-      </v-layout>
-    </v-flex>
-      </v-layout>
-   
-    </v-container>
-
-<!-- Mobile Rendering -->
-<v-container class="hidden-md-and-up">
-  
-
-    <v-flex xs12 md12>
-        <v-toolbar class="white--text" color="#0D47A1">
-
-          
 
 
-            <v-menu offset-y class="hidden-md-and-up">
-                <v-btn
-                  slot="activator"
-                  color="#0D47A1"
-                  dark
-                  align-content="center"
-                  
-                >
-                  Options
-                </v-btn>
-                <v-list>
-                  <v-list-tile
-                    v-for="(item,index) in items"
-                    
-                    @click=""
-                  >
-                    <v-list-tile-title>{{ item }}</v-list-tile-title>
-                  </v-list-tile>
-                </v-list>
-              </v-menu>
+            <!-- Rendering body -->
 
 
-
-          </v-toolbar-side-icon>
-          <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items class="hidden-md-and-down">
-            <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
-            <v-btn class="white--text" flat @click="screen = 2">About Me</v-btn>
-            <v-btn class="white--text" flat @click="screen = 2">Experience</v-btn>
-          </v-toolbar-items>
-
-        </v-toolbar>
-        <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
-        <v-flex xs12>
-                <v-img 
-      :src="`profile.jpg`"
-      aspect-ratio="1"
-      class="grey lighten-2"
-      size="4"
-                >
-                </v-flex>
-  </v-layout>
-
-<v-flex >
-    <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
-      <v-flex xs0>
-        <template>
-            <v-layout>
-              <v-flex >
-                <v-card style="align-content: center">
-                  <v-card-title primary-title>
-                    <div>
-                      <h3 class="headline mb-0">Hobbies</h3>
-                      <div>Backpacking</div>
-                    </div>
-                  </v-card-title>
-
-                  <v-img
-                    src="yosemite.jpg"
-                    aspect-ratio="2.75"
-                  ></v-img>
-                  <v-card-title  primary-title>
-                  <div>
-                    In 2017 I had the pleasure of backpacking in Yosemite
-                    Nation Park.
-                  </div>
-                </v-card-title>
-                </v-card>
+            <!-- Home Screen -->
+            <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
+              <v-flex xs12>
+                <v-img :src="`profile.jpg`" aspect-ratio="1" class="grey lighten-2" size="4">
               </v-flex>
             </v-layout>
-          </template>
-        </v-flex>
-    </v-layout>
-  </v-flex>
+
+            <v-layout style="background-color: rgb(147, 168, 226)" column>
+                <v-flex md5 lg5 xl5 class = "pa-4">
+                      <v-flex class = "pa-4">
+                        <v-card style="align-content: center" >
+                          <v-card-title primary-title>
+                            <div>
+                              <h3 class="headline mb-0">Summary</h3>
+                              <br>
+                              <div>I am software developer who enjoys utilizing a multitude 
+                                of tools to create innovative solutions for real world
+                                problems. I enjoy developing frontend and backend software for many
+                                platforms incuding mobile, web, and desktop.
+                              </div>
+                            </div>
+                          </v-card-title>
+                          <v-card-title primary-title>
+                          </v-card-title>
+                        </v-card>
+                      </v-flex>
+                        <v-flex class = "pa-4">
+
+                        <v-card style="align-content: center">
+                        <v-card-title primary-title>
+                            <div>
+                              <h3 class="headline mb-0">"If it doesn't challenge you it 
+                                doesn't change you."
+                              </h3>
+                              <br>
+                              <div>As someone who believes in the importance of personal growth, I welcome the opportunity
+                                to take on new and exciting challenges.
+                                I continually strive to learn new skills that will improve my
+                                ability to develop quality applications. 
+                                </div>
+                              </div>
+                        </v-card-title>
+                      </v-card>
+                    </v-flex>
+                     
+                </v-flex>
+              </v-layout>
+            <!-- end of home screen -->
+
+            <v-flex>          
+              <!-- About me screen -->
+              <v-layout class = "pa-4" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
+              <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
+                <template>
+                  <v-layout>
+                    <v-flex class = "pa-4">
+
+                      <!-- Backpacking Card -->
+                      <v-card style="align-content: center">
+                        <v-card-title primary-title justify-center>
+                          <div  >
+                            <h2 class="headline mb-0">Backpacking</h2>
+                          </div>
+                        </v-card-title>
+
+                        <template>
+                            <v-carousel class = "pa-4">
+                              <v-carousel-item
+                                v-for="(item,i) in backpacking"
+                                :key="i"
+                                :src="item"
+                              ></v-carousel-item>
+                            </v-carousel>
+                          </template>
+                        
+                      </v-card>
+                    </v-flex>
+                  </v-layout>
+                  <v-layout>
+                      <v-flex class="pa-4">
+
+                          <v-card style="align-content: center">
+                          <v-card-title primary-title>
+                              <div>
+                                <h3 class="headline mb-0">Races</h3>
+                              </div>
+                            </v-card-title>
+    
+                            <template>
+                                <v-carousel>
+                                  <v-carousel-item
+                                    v-for="(item,i) in races"
+                                    :key="i"
+                                    :src="item"
+                                  ></v-carousel-item>
+                                </v-carousel>
+                              </template>
+                            
+                              </v-card>
+
+                      </v-flex>
+                    </v-layout>
+                </template>
+              </v-flex>
+            </v-layout>
+            </v-flex>
 
         </v-container>
         <!-- </v-flex> -->
       </v-content>
     </v-app>
   </div>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
   <script>
-    new Vue({ el: '#app',
-    data: {
-      items: [
-        "Projects","About Me","Experience"
-      ],
+    
+    new Vue({
+      el: '#app',
+      data: {
+        items: [
+          "Projects", "About Me", "Experience"
+        ],
 
-      screen: 1
+          backpacking: [
+          "yosemite.jpg", "yosemite2.jpg","yosemite4.jpg", "colorado.jpg","colorado2.jpg","colorado3.jpg"
+        ],
 
-    } })
+        races: [
+          "race.jpg","race2.jpg","race3.jpg","race4.jpg"
+        ],
+
+        screen: 1
+
+      }
+    });
+    
   </script>
 </body>
+
 </html>
