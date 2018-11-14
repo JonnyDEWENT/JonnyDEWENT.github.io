@@ -11,7 +11,7 @@
     <v-app>
       <v-content>
         <!-- <v-flex > -->
-        <v-container>
+        <v-container class="hidden-md-and-down">
           <template>
             <v-flex xs12 md12>
             <v-toolbar class="white--text" color="#0D47A1">
@@ -19,7 +19,7 @@
               
 
 
-                <v-menu offset-y >
+                <v-menu offset-y class="hidden-md-and-up">
                     <v-btn
                       slot="activator"
                       color="#0D47A1"
@@ -46,16 +46,16 @@
               </v-toolbar-side-icon>
               <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-toolbar-items class="hidden-sm-and-down">
-                <v-btn class="white--text" flat>Projects</v-btn>
-                <v-btn class="white--text" flat>About Me</v-btn>
-                <v-btn class="white--text" flat>Experience</v-btn>
+              <v-toolbar-items class="hidden-md-and-down">
+                <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
+                <v-btn class="white--text" flat @click="screen = 2">About Me</v-btn>
+                <v-btn class="white--text" flat @click="screen = 2">Experience</v-btn>
               </v-toolbar-items>
 
             </v-toolbar>
           </v-flex>
           </template>
-          <v-layout style = "background-color: rgb(147, 168, 226)" row align-start>
+          <v-layout v-if= "screen === 1" style = "background-color: rgb(147, 168, 226)" row align-start>
             <v-flex md6>
           <v-layout md6 class = 'pa-4'  style = "background-color: rgb(147, 168, 226)" column >
             <v-flex xs12>
@@ -68,7 +68,7 @@
                     </v-flex>
       </v-layout>
     </v-flex>
-    <v-flex class="hidden-sm-and-down">
+    <v-flex>
       <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
         <v-flex xs0>
           <template>
@@ -100,11 +100,13 @@
       </v-layout>
     </v-flex>
       </v-layout>
-
+   
+    </v-container>
 
 <!-- Mobile Rendering -->
-
-<v-flex class="hidden-md-and-up">
+<v-container class="hidden-md-and-up">
+  <!-- <template> -->
+<v-flex >
     <v-layout class = 'pa-4' style = "background-color: rgb(147, 168, 226)" column>
       <v-flex xs0>
         <template>
@@ -149,7 +151,10 @@
     data: {
       items: [
         "Projects","About Me","Experience"
-      ]
+      ],
+
+      screen: 1
+
     } })
   </script>
 </body>
