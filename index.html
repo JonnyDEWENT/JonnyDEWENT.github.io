@@ -17,7 +17,28 @@
             <v-toolbar class="white--text" color="#0D47A1">
 
               
-              <v-toolbar-side-icon class="hidden-md-and-up">
+
+
+                <v-menu offset-y class="hidden-md-and-up">
+                    <v-btn
+                      slot="activator"
+                      color="primary"
+                      dark
+                    >
+                    <v-toolbar-side-icon>
+                    </v-btn>
+                    <v-list>
+                      <v-list-tile
+                        v-for="(item,index) in items"
+                        
+                        @click=""
+                      >
+                        <v-list-tile-title>{{ item }}</v-list-tile-title>
+                      </v-list-tile>
+                    </v-list>
+                  </v-menu>
+
+
 
               </v-toolbar-side-icon>
               <v-toolbar-title class ="xs3">Jon DeWent</v-toolbar-title>
@@ -121,7 +142,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
   <script>
-    new Vue({ el: '#app' })
+    new Vue({ el: '#app',
+    data: {
+      items: [
+        "Projects","About Me","Experience"
+      ]
+    } })
   </script>
 </body>
 </html>
