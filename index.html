@@ -12,22 +12,22 @@
       <v-content style="background-color: rgb(123, 131, 131)">
 
         <!-- This is the rendering section for computers lg & up -->
-        <v-container class="hidden-md-and-down">
+        <v-container >
           <template name>
             <v-flex xs12 md12>
 
               <!-- Creating Menu -->
               <v-toolbar class="white--text" color="#0D47A1">
-                <v-menu offset-y class="hidden-md-and-up">
-                  <v-btn slot="activator" color="#0D47A1" dark align-content="center">
-                    Options
-                  </v-btn>
-                  <v-list>
-                    <v-list-tile v-for="(item,index) in items" @click="">
-                      <v-list-tile-title>{{ item }}</v-list-tile-title>
-                    </v-list-tile>
-                  </v-list>
-                </v-menu>
+                  <v-menu offset-y class="hidden-lg-and-up">
+                      <v-btn slot="activator" color="#0D47A1" dark align-content="center">
+                        Options
+                      </v-btn>
+                      <v-list>
+                        <v-list-tile v-for="(item,index) in items" @click="">
+                          <v-list-tile-title @click ="screen = index+1">{{ item }}</v-list-tile-title>
+                        </v-list-tile>
+                      </v-list>
+                    </v-menu>
 
                 </v-toolbar-side-icon>
                 <v-toolbar-title class="xs3">Jon DeWent</v-toolbar-title>
@@ -48,14 +48,14 @@
           <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
             <v-flex lg6 md6 xl6>
               <v-layout  style="background-color: rgb(147, 168, 226)" column>
-                <v-flex xs12 md6 lg5 xl5 class ="pa-5">
+                <v-flex class ="pa-5">
                   <v-img :src="`profile.jpg`" aspect-ratio="1.1" size="4">
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex lg6 md6 xl6>
               <v-layout style="background-color: rgb(147, 168, 226)" column>
-                <v-flex md5 lg5 xl5 class = "pa-4">
+                <v-flex class = "pa-4">
                       <v-flex class = "pa-4">
                         <v-card style="align-content: center" >
                           <v-card-title primary-title>
@@ -161,7 +161,7 @@
         <!-- This is the Mobile Rendering section -->
 
         <!-- Rendering Menu -->
-        <v-container class="hidden-lg-and-up">
+        <!-- <v-container class="hidden-lg-and-up">
             <v-toolbar class="white--text" color="#0D47A1">
               <v-menu offset-y class="hidden-lg-and-up">
                 <v-btn slot="activator" color="#0D47A1" dark align-content="center">
@@ -189,12 +189,16 @@
 
 
             <!-- Home Screen -->
-            <v-layout v-if="screen === 1">
-            <v-layout  style="background-color: rgb(147, 168, 226)" column>
-                <v-img :src="`profile.jpg`" aspect-ratio="1">
+            <!-- <v-layout v-if="screen === 1">
+               
+            <v-layout  style="background-color: rgb(147, 168, 226)" row>
+                <v-flex sm12 xs12>
+                <v-img :src="`profile.jpg`" >
+                </v-flex >
             </v-layout>
+            
 
-            <v-layout style="background-color: rgb(147, 168, 226)" column>
+            <v-layout style="background-color: rgb(147, 168, 226)" row>
                 <v-flex md5 lg5 xl5 class = "pa-4">
                       <v-flex class = "pa-4">
                         <v-card style="align-content: center" >
@@ -239,7 +243,7 @@
 
             <!-- <v-flex>           -->
               <!-- About me screen -->
-              <v-layout v-if="screen === 3">
+              <!-- <v-layout v-if="screen === 3">
               <v-layout v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
@@ -247,7 +251,7 @@
                     <v-flex >
 
                       <!-- Backpacking Card -->
-                      <v-card style="align-content: center">
+                      <!-- <v-card style="align-content: center">
                         <v-card-title primary-title justify-center>
                           <div  >
                             <h2 class="headline mb-0">Backpacking</h2>
@@ -295,9 +299,9 @@
               </v-flex>
             </v-layout>
               </v-layout>
-            </v-flex>
+            </v-flex> -->
 
-        </v-container>
+        <!-- </v-container> --> 
         <!-- </v-flex> -->
       </v-content>
     </v-app>
