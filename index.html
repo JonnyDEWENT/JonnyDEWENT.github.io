@@ -9,6 +9,7 @@
 <body style="text-emphasis-color: white">
   <div id="app">
     <v-app>
+
       <v-content style="background-color: rgb(123, 131, 131)">
 
         <!-- This is the rendering section for computers lg & up -->
@@ -46,17 +47,17 @@
           <!-- Body layout -->
           <!-- Home Screen -->
           <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
-            <v-flex lg6 md6 xl6>
+            <v-flex >
               <v-layout  style="background-color: rgb(147, 168, 226)" column>
-                <v-flex class ="pa-5">
+                <v-flex lg6 sm6 class ="pa-2">
                   <v-img :src="`profile.jpg`" aspect-ratio="1.1" size="4">
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex lg6 md6 xl6>
               <v-layout style="background-color: rgb(147, 168, 226)" column>
-                <v-flex class = "pa-4">
-                      <v-flex class = "pa-4">
+                <v-flex class = "pa-1">
+                      <v-flex class = "pa-2">
                         <v-card style="align-content: center" >
                           <v-card-title primary-title>
                             <div>
@@ -73,7 +74,7 @@
                           </v-card-title>
                         </v-card>
                       </v-flex>
-                        <v-flex class = "pa-4">
+                        <v-flex class = "pa-2">
 
                         <v-card style="align-content: center">
                         <v-card-title primary-title>
@@ -100,11 +101,11 @@
 
 
           <!-- About Me -->
-          <v-layout class = "pa-4" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
+          <v-layout class = "pa-2" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
                   <v-layout>
-                    <v-flex class = "pa-4">
+                    <v-flex class = "pa-1">
 
                       <!-- Backpacking Card -->
                       <v-card style="align-content: center">
@@ -115,7 +116,7 @@
                         </v-card-title>
 
                         <template>
-                            <v-carousel class = "pa-4">
+                            <v-carousel>
                               <v-carousel-item
                                 v-for="(item,i) in backpacking"
                                 :key="i"
@@ -128,7 +129,7 @@
                     </v-flex>
                   </v-layout>
                   <v-layout>
-                      <v-flex class="pa-4">
+                      <v-flex class="pa-1">
 
                           <v-card style="align-content: center">
                           <v-card-title primary-title>
