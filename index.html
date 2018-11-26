@@ -15,50 +15,81 @@
         <!-- This is the rendering section for computers lg & up -->
         <v-container >
           <template name>
-            <v-flex xs12 md12>
+            <v-flex >
 
               <!-- Creating Menu -->
-              <v-toolbar class="white--text" color="#0D47A1">
-                  <v-menu offset-y class="hidden-lg-and-up">
+              <v-toolbar class="white--text" color="red">
+                  <v-menu transition="slide-y-transition" offset-y class="hidden-lg-and-up">
                       <v-btn slot="activator" color="#0D47A1" dark align-content="center">
                         Options
                       </v-btn>
                       <v-list>
                         <v-list-tile v-for="(item,index) in items" @click="">
-                          <v-list-tile-title @click ="screen = index+1">{{ item }}</v-list-tile-title>
+                          <v-list-tile-title @click ="screen = index+1; if(screen === 2) {screen = 5; play()}">{{ item }}</v-list-tile-title>
                         </v-list-tile>
                       </v-list>
                     </v-menu>
 
                 </v-toolbar-side-icon>
-                <v-toolbar-title class="xs3">Jon DeWent</v-toolbar-title>
+                <v-toolbar-title class="xs3">Merry Christmas!</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-toolbar-items class="hidden-md-and-down">
                     <v-btn class="white--text" flat @click="screen = 1"><v-icon>home</v-icon></v-btn>
-                  <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
+                  <!-- <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
                   <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
-                  <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
+                  <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn> -->
+                  <v-btn class="white--text" flat @click="screen = 5; play()">Christmas Wish-List</v-btn>
                 </v-toolbar-items>
 
               </v-toolbar>
             </v-flex>
           </template>
+          <audio id="audio" src="jingle-bells-country.mp3"></audio>
 
           <!-- Body layout -->
+
+
+
           <!-- Home Screen -->
-          <v-layout v-if="screen === 1" style="background-color: rgb(147, 168, 226)" row  wrap>
-            <v-flex >
-              <v-layout  style="background-color: rgb(147, 168, 226)" column>
-                <v-flex lg6 sm6 class ="pa-2">
-                  <v-img :src="`profile.jpg`" aspect-ratio="1.1" size="4">
+          <v-layout v-if="screen === 1" style="background-color:green" row  wrap>
+            <v-flex>
+              <v-layout  style="background-color: green" column>
+                <v-flex lg6 md6 sm6 class ="pa-2">
+                  <v-img :src="`profile.jpg`" aspect-ratio="1.1" size="4" transition="slide-x-transition">
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex lg6 md6 xl6>
-              <v-layout style="background-color: rgb(147, 168, 226)" column>
+              <v-layout style="background-color: green" column>
                 <v-flex class = "pa-1">
                       <v-flex class = "pa-2">
+
+
+
+                        <!-- christmas crap! -->
+
                         <v-card style="align-content: center" >
+                            <v-card-title primary-title>
+                              <div>
+                                <h3 class="headline mb-0">Welcome to my Christmas wish list site!
+                                  Please feel free to use this site for ideas for buying me things!
+                                </h3>
+                                <br>
+                                <!-- <div>I am software developer who enjoys utilizing a multitude 
+                                  of tools to create innovative solutions for real world
+                                  problems. I enjoy developing frontend and backend software for many
+                                  platforms incuding mobile, web, and desktop.
+                                </div> -->
+                              </div>
+                            </v-card-title>
+                            <v-card-title primary-title>
+                            </v-card-title>
+                          </v-card>
+
+
+
+
+                        <!-- <v-card style="align-content: center" >
                           <v-card-title primary-title>
                             <div>
                               <h3 class="headline mb-0">Summary</h3>
@@ -72,9 +103,9 @@
                           </v-card-title>
                           <v-card-title primary-title>
                           </v-card-title>
-                        </v-card>
+                        </v-card> -->
                       </v-flex>
-                        <v-flex class = "pa-2">
+                        <!-- <v-flex class = "pa-2">
 
                         <v-card style="align-content: center">
                         <v-card-title primary-title>
@@ -91,7 +122,7 @@
                               </div>
                         </v-card-title>
                       </v-card>
-                    </v-flex>
+                    </v-flex> -->
                      
                 </v-flex>
               </v-layout>
@@ -104,12 +135,12 @@
           <v-layout class = "pa-2" v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
-                  <v-layout>
+                  <v-layout >
                     <v-flex class = "pa-1">
 
                       <!-- Backpacking Card -->
                       <v-card style="align-content: center">
-                        <v-card-title primary-title justify-center>
+                        <v-card-title primary-title justify-center >
                           <div  >
                             <h2 class="headline mb-0">Backpacking</h2>
                           </div>
@@ -157,115 +188,43 @@
             </v-layout>
             <!-- End of About Me -->
 
-        </v-container>
 
-        <!-- This is the Mobile Rendering section -->
-
-        <!-- Rendering Menu -->
-        <!-- <v-container class="hidden-lg-and-up">
-            <v-toolbar class="white--text" color="#0D47A1">
-              <v-menu offset-y class="hidden-lg-and-up">
-                <v-btn slot="activator" color="#0D47A1" dark align-content="center">
-                  Options
-                </v-btn>
-                <v-list>
-                  <v-list-tile v-for="(item,index) in items" @click="">
-                    <v-list-tile-title @click ="screen = index+1">{{ item }}</v-list-tile-title>
-                  </v-list-tile>
-                </v-list>
-              </v-menu>
-              </v-toolbar-side-icon>
-              <v-toolbar-title class="xs3">Jon DeWent</v-toolbar-title>
-              <v-spacer></v-spacer>
-              <v-toolbar-items class="hidden-md-and-down">
-                <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
-                <v-btn class="white--text" flat @click="screen = 2">About Me</v-btn>
-                <v-btn class="white--text" flat @click="screen = 2">Experience</v-btn>
-              </v-toolbar-items>
-
-            </v-toolbar>
-
-
-            <!-- Rendering body -->
-
-
-            <!-- Home Screen -->
-            <!-- <v-layout v-if="screen === 1">
-               
-            <v-layout  style="background-color: rgb(147, 168, 226)" row>
-                <v-flex sm12 xs12>
-                <v-img :src="`profile.jpg`" >
-                </v-flex >
-            </v-layout>
-            
-
-            <v-layout style="background-color: rgb(147, 168, 226)" row>
-                <v-flex md5 lg5 xl5 class = "pa-4">
-                      <v-flex class = "pa-4">
-                        <v-card style="align-content: center" >
-                          <v-card-title primary-title>
-                            <div>
-                              <h3 class="headline mb-0">Summary</h3>
-                              <br>
-                              <div>I am software developer who enjoys utilizing a multitude 
-                                of tools to create innovative solutions for real world
-                                problems. I enjoy developing frontend and backend software for many
-                                platforms incuding mobile, web, and desktop.
-                              </div>
-                            </div>
-                          </v-card-title>
-                          <v-card-title primary-title>
-                          </v-card-title>
-                        </v-card>
-                      </v-flex>
-                        <v-flex class = "pa-4">
-
-                        <v-card style="align-content: center">
-                        <v-card-title primary-title>
-                            <div>
-                              <h3 class="headline mb-0">"If it doesn't challenge you it 
-                                doesn't change you."
-                              </h3>
-                              <br>
-                              <div>As someone who believes in the importance of personal growth, I welcome the opportunity
-                                to take on new and exciting challenges.
-                                I continually strive to learn new skills that will improve my
-                                ability to develop quality applications. 
-                                </div>
-                              </div>
-                        </v-card-title>
-                      </v-card>
-                    </v-flex>
-                     
-                </v-flex>
-              </v-layout>
-              </v-layout>
-            <!-- end of home screen -->
-
-            <!-- <v-flex>           -->
-              <!-- About me screen -->
-              <!-- <v-layout v-if="screen === 3">
-              <v-layout v-if="screen === 3" style="background-color: rgb(147, 168, 226)" row  wrap justify-center>
+            <!-- Start of christmas list -->
+            <v-layout class = "pa-2" v-if="screen === 5" style="background-color: green;"  row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
-                  <v-layout>
-                    <v-flex >
+                  <v-layout class="sm6 md6 lg6">
+                    <v-flex class = "pa-1" >
 
-                      <!-- Backpacking Card -->
-                      <!-- <v-card style="align-content: center">
-                        <v-card-title primary-title justify-center>
+                      <!-- Christmas list card-->
+                      <v-card style="align-content: center">
+                        <v-card-title primary-title justify-center >
                           <div  >
-                            <h2 class="headline mb-0">Backpacking</h2>
+                            <h2 class="headline mb-0">Jon's Christmas Wish-List</h2>
                           </div>
                         </v-card-title>
 
                         <template>
-                            <v-carousel >
+                            <v-carousel height = 10% >
                               <v-carousel-item
-                                v-for="(item,i) in backpacking"
+                                v-for="(item,i) in christmas"
                                 :key="i"
-                                :src="item"
-                              ></v-carousel-item>
+                                :src="item.src"
+                                :aspect-ratio="2.75" >
+                              <v-jumbotron>
+                                <v-container fill-height>
+                                  <v-layout align-top >
+                                    <v-flex>
+                                      <div style="background-color: azure; border-style: solid; border-color:black">
+                                      <h2 style="color: black">{{ item.title }}</h2>
+                                    </div>
+                                      
+                                    </v-flex>
+                                  </v-layout>
+                                </v-container>
+                              </v-jumbotron>
+
+                            </v-carousel-item>
                             </v-carousel>
                           </template>
                         
@@ -273,8 +232,8 @@
                     </v-flex>
                   </v-layout>
                   <v-layout>
-                      <v-flex >
-
+                      <v-flex class="pa-1">
+<!-- 
                           <v-card style="align-content: center">
                           <v-card-title primary-title>
                               <div>
@@ -292,18 +251,18 @@
                                 </v-carousel>
                               </template>
                             
-                              </v-card>
+                              </v-card> -->
 
                       </v-flex>
                     </v-layout>
                 </template>
               </v-flex>
             </v-layout>
-              </v-layout>
-            </v-flex> -->
+            <!-- End of christmas list -->
 
-        <!-- </v-container> --> 
-        <!-- </v-flex> -->
+        </v-container>
+
+       
       </v-content>
     </v-app>
   </div>
@@ -311,12 +270,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
   <script>
-    
+   
     new Vue({
       el: '#app',
       data: {
         items: [
-          "Home","Projects", "About Me", "Experience"
+          "Home", "Christmas Wish-List"
+          // "Projects", "About Me", "Experience"
         ],
 
           backpacking: [
@@ -327,10 +287,32 @@
           "race.jpg","race2.jpg","race3.jpg","race4.jpg"
         ],
 
+        christmas: [
+          {src: "soundbar.jpg",
+          title: "A soundbar!"}, 
+          {src: "iceFish.jpg",
+          title: "Ice fishing gear!"},
+          {src: "earMuffs.jpg",
+          title: "Electronic shooting headphones"
+          },
+          {src: "gncgiftcard.jpg",
+          title: "GNC gift card!"},
+          {src: "amazongiftcard.jpg",
+          title: "Amazon gift card"}
+        ],
+
         screen: 1
 
+      },
+      methods: {
+      play() {
+        screen = 5;
+        var audio = document.getElementById("audio");
+        audio.play();
+    }
       }
     });
+
     
   </script>
 </body>
