@@ -51,17 +51,17 @@
 
 
           <!-- Home Screen -->
-          <v-layout v-if="screen === 1" style="background-color:green" row  wrap >
-            <v-flex>
-              <v-layout  style="background-color: green" column height=50%>
-                <v-flex lg6 md6 sm6 class ="pa-2" height=50%>
+          <v-layout v-if="screen === 1" style="background-color:green" row wrap >
+            <v-flex lg6 md6 xl6>
+              <v-layout  style="background-color: green" column >
+                <v-flex lg6 md6 sm6 xs6 class ="pa-2" >
                   <v-img :src="`christmasProfile.jpg`" aspect-ratio=".75" size="7" transition="slide-x-transition" >
                 </v-flex>
               </v-layout>
             </v-flex>
             <v-flex lg6 md6 xl6>
               <v-layout style="background-color: green" column >
-                <v-flex class = "pa-1">
+                <v-flex lg6 md6 sm6 xs6 class class = "pa-1">
                       <v-flex class = "pa-2">
 
 
@@ -71,10 +71,16 @@
                         <v-card style="align-content: center" >
                             <v-card-title primary-title>
                               <div>
-                                <h3 class="headline mb-0">Welcome to my Christmas wish list site! <br><br>
-                                  Please feel free to use this site to get ideas for buying me things!
+                                <h3 class="headline mb-0">Welcome to my Christmas wish list site! 
+                                  
                                 </h3>
-                                <br>
+                              </div>
+                              <div>
+                                
+                                <h3 class="headline mb-0">
+                                    Please feel free to use this site to get ideas for buying me things!
+
+                                </h3>
                                 <!-- <div>I am software developer who enjoys utilizing a multitude 
                                   of tools to create innovative solutions for real world
                                   problems. I enjoy developing frontend and backend software for many
@@ -88,8 +94,8 @@
 
 
 
-
-                        <!-- <v-card style="align-content: center" >
+<!-- 
+                        <v-card style="align-content: center" >
                           <v-card-title primary-title>
                             <div>
                               <h3 class="headline mb-0">Summary</h3>
@@ -193,7 +199,7 @@
             <v-layout class = "pa-2" v-if="screen === 5" style="background-color: green;"  row  wrap justify-center>
               <v-flex class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
                 <template>
-                  <v-layout class="sm6 md6 lg6">
+                  <v-layout class="sm6 md6 lg6" column wrap>
                     <v-flex class = "pa-1" >
 
                       <!-- Christmas list card-->
@@ -205,12 +211,14 @@
                         </v-card-title>
 
                         <template>
-                            <v-carousel height = 10% >
+                            <v-carousel height=50% >
                               <v-carousel-item
                                 v-for="(item,i) in christmas"
                                 :key="i"
                                 :src="item.src"
-                                :aspect-ratio="2.75" >
+                                :aspect-ratio="2.75"
+                                height="50%" >
+                                
                               <v-jumbotron>
                                 <v-container fill-height>
                                   <v-layout align-top >
