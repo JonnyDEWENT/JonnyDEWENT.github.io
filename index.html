@@ -25,7 +25,7 @@
                       </v-btn>
                       <v-list>
                         <v-list-tile v-for="(item,index) in items" @click="">
-                          <v-list-tile-title @click ="screen = index+1; if(screen === 2) {screen = 5;}">{{ item }}</v-list-tile-title>
+                          <v-list-tile-title @click ="screen = index+1; if(screen === 2) {screen = 5; play();}">{{ item }}</v-list-tile-title>
                         </v-list-tile>
                       </v-list>
                     </v-menu>
@@ -38,7 +38,7 @@
                   <!-- <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
                   <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
                   <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn> -->
-                  <v-btn class="white--text" flat @click="screen = 5; ">Christmas Wish-List</v-btn>
+                  <v-btn class="white--text" flat @click="screen = 5; play();">Christmas Wish-List</v-btn>
                 </v-toolbar-items>
 
               </v-toolbar>
@@ -339,9 +339,9 @@
   </script>
 
   <script>
-        screen = 5;
-        var audio = document.getElementById("audio");
-        audio.play();
+        
+        // var audio = document.getElementById("audio");
+        // audio.play();
   </script>
 </body>
 
