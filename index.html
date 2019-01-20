@@ -11,10 +11,10 @@
     <v-app>
 
       <!-- <v-content style="background-color: rgb(47, 55, 77)"> -->
-          <v-content justify-center style="background-position: center; background-image: url(./background.jpg); background-color: rgb(47, 55, 77); height: 90%">
-
+          <v-content v-if="screen === 1" style="margin-top:0%;  background-position: center; background-color: rgb(47, 55, 77); height: 100%; background-image: url(./background.jpg) " >
+            <!-- background-image: url(./background.jpg) -->
         <!-- This is the rendering section for computers lg & up -->
-        <v-container >
+        <v-container  >
           <template name>
             <v-flex >
 
@@ -39,13 +39,13 @@
                   <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
                   <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
                   <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
-                  <!-- <v-btn class="white--text" flat @click="screen = 5; play();">Christmas Wish-List</v-btn> -->
+
                 </v-toolbar-items>
 
               </v-toolbar>
             </v-flex>
           </template>
-          <!-- <audio loop="true" id="audio" src="https://ia601901.us.archive.org/24/items/JingleBellRock_201612/01%20Jingle%20Bell%20Rock.mp3"></audio> -->
+
 
           <!-- Body layout -->
 
@@ -54,17 +54,7 @@
           <!-- Home Screen -->
           <v-layout v-if="screen === 1" style="background-color:transparent; height: 60% " row wrap >
 
-              <!-- <v-flex lg12 md12 xl6>
-                  <v-layout  style="background-color: rgb(147, 168, 226)" column justify-center >
-                    <v-flex lg5 md5 sm6 xs6 class ="pa-2" color="indigo" >
-                      <v-img :src="`logo.jpg`" aspect-ratio="1.8" size="7" transition="slide-x-transition"  >
-                    </v-flex>
-                    
-                  </v-layout> -->
-                  <!-- <h1>Contact <v-btn color="info">Facebook</v-btn></h1>
-                  <v-btn color="info">Facebook</v-btn> -->
-
-                <!-- </v-flex> -->
+ 
 
           </v-layout>
 
@@ -83,17 +73,10 @@
 
 
           <!-- About Me -->   
-           <v-layout  v-if="screen === 1" style="background-color: transparent" row  wrap justify-center align-center >
+           <v-layout  v-if="screen === 1" style="background-color: transparent " row  wrap justify-center align-center >
 
 
-<!--                 
-              <v-flex lg4 md4 xl6>
-                  <v-layout  style="background-color: transparent; align-content: center; text-align: center" column justify-center >
-                    <v-flex lg3 md6 sm6 xs6 class ="pa-3" justify-center align-center>
-                      <v-img :src="`profile.jpg`" aspect-ratio=".75" size="7" transition="slide-x-transition"  >
-                    </v-flex>
-                  </v-layout>
-                </v-flex> -->
+
                 <v-flex lg9 md9 xl6>
                   <v-layout style="background-color: transparent; text-align: center;" column >
                     <v-flex lg9 md9 sm9 xs9 class class = "pa-1">
@@ -113,9 +96,7 @@
                                     <v-btn class="white--text" color="indigo">LinkedIn</v-btn>
                                     <v-btn class="white--text" color="black">Github</v-btn>
                                   </div>
-                                </v-card-title>
-                                <v-card-title primary-title>
-                                </v-card-title>
+                                
                               </v-card>
     
                           </v-flex>
@@ -124,43 +105,46 @@
                   </v-layout>
                 </v-flex>
 
-              <!-- <v-flex  md11 lg11 xl9  class="pa-3" align-center justify-center style="align-content: center; text-align: center">
-                
-                  
-                  <v-card  color="indigo" class="white--text"class="pa-2" style="align-content: center">
-                      <v-layout  class="text-xs-center" style="background-color: rgb(246, 247, 250)" column justify-center align-center>
-                          <v-flex lg5 md5 sm6 xs6 class ="pa-2" color="indigo" >
-                            <v-img :src="`gvsu.png`" aspect-ratio="1.8" size="3" transition="slide-x-transition" width="300px" >
-                          </v-flex>
-                          
-                        </v-layout>
-                        <v-layout column class="text-xs-center" justify-center align-center>
-                      <v-card-title primary-title >
-                        <div>
-                            
-                          <div style="text-align: center"><h3>
-                            Bachelor's of Science in Computer Science from Grand Valley State University - 3.80 GPA </h3>
-                            
-                          </h3>
-                          </div>
-                        </div>
-                      </v-card-title>
-
-                    </v-layout>
-                    </v-card>
-                    
-                    </v-flex> -->
-
                   </v-layout> 
+        </v-container>
+          </v-content>
+          <v-content v-if="screen != 1">
+            <v-container>
+                <v-toolbar class="white--text" color="black">
+                    <v-menu transition="slide-y-transition" offset-y class="hidden-lg-and-up">
+                        <v-btn slot="activator" style="background-color: rgb(47, 55, 77)" dark align-content="center">
+                          Options
+                        </v-btn>
+                        <v-list>
+                          <v-list-tile v-for="(item,index) in items" @click="">
+                            <v-list-tile-title @click ="screen = index+1; if(screen === 2) {screen = 5; play();}">{{ item }}</v-list-tile-title>
+                          </v-list-tile>
+                        </v-list>
+                      </v-menu>
+  
+                  </v-toolbar-side-icon>
+                  <v-toolbar-title class="xs3 white--text">Jon DeWent</v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-toolbar-items class="hidden-md-and-down">
+                      <v-btn class="white--text" flat @click="screen = 1"><v-icon>home</v-icon></v-btn>
+                    <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
+                    <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
+                    <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
+  
+                  </v-toolbar-items>
+  
+                </v-toolbar>
+              </v-flex>
+            </template>
           <v-layout class = "pa-2" v-if="screen === 3" style="background-color:transparent; text-align: center" row  wrap justify-center>
 
-              <v-flex  md11 lg11 xl9  class="pa-3" align-center justify-center style="align-content: center; text-align: center">
+              <v-flex  md4 lg4 xl3  class="pa-3" align-center justify-center style="align-content: center; text-align: center">
                 
                   
                   <v-card   class="white--text"class="pa-2" style="align-content: center; background-color: rgb(47, 55, 77)">
                       <v-layout  class="text-xs-center" style="background-color: rgb(246, 247, 250)" column justify-center align-center>
                           <v-flex lg5 md5 sm6 xs6 class ="pa-2" color="indigo" >
-                            <v-img :src="`gvsu.png`" aspect-ratio="1.8" size="3" transition="slide-x-transition" width="300px" >
+                            <v-img :src="`gvsu.png`" aspect-ratio="1.8" size="3" transition="slide-x-transition" width="150px" >
                           </v-flex>
                           
                         </v-layout>
@@ -169,7 +153,7 @@
                         <div>
                             
                           <div style="text-align: center"><h3>
-                            Bachelor's of Science in Computer Science from Grand Valley State University - 3.80 GPA </h3>
+                            Bachelor's of Science in Computer Science from Grand Valley State University</h3>
                             
                           </h3>
                           </div>
@@ -192,7 +176,7 @@
                           wife.</h3></v-card-title>
 
                         <template>
-                            <v-carousel style="height: 400px">
+                            <v-carousel style="height: 380px">
                               <v-carousel-item
                                 v-for="(item,i) in backpacking"
                                 :key="i"
@@ -208,11 +192,6 @@
                       <v-flex class="pa-1">
 
                           <v-card style="align-content: center">
-                          <!-- <v-card-title primary-title>
-                              <div>
-                                <h3 class="headline mb-0">Races</h3>
-                              </div>
-                            </v-card-title> -->
     
 
                             
@@ -247,32 +226,7 @@
           backpacking: [
           "yosemite.jpg", "yosemite2.jpg","yosemite4.jpg", "colorado.jpg","colorado2.jpg","colorado3.jpg","race.jpg","race2.jpg","race3.jpg","race4.jpg"
         ],
-
-        // races: [
-        //   "race.jpg","race2.jpg","race3.jpg","race4.jpg"
-        // ],
-
-        // christmas: [
-        //   {src: "soundbar.jpg",
-        //   title: "A soundbar!"}, 
-        //   {src: "cards.jpg",
-        //   title: "A card shuffler!"}, 
-        //   {src: "iceFish.jpg",
-        //   title: "Ice fishing gear!"},
-        //   {src: "earMuffs.jpg",
-        //   title: "Electronic shooting headphones!"
-        //   },
-        //   {src: "gncgiftcard.jpg",
-        //   title: "GNC gift card!"},
-        //   {src: "amazongiftcard.jpg",
-        //   title: "Amazon gift card!"},
-        //   {src: "money.jpg",
-        //   title: "Cash Money!!!"},
-        //   {src: "winterHat.jpg",
-        //   title: "Winter hat!"},
-        //   {src: "wintergloves.jpg",
-        //   title: "Winter gloves!"}
-        // ],
+        myImage: "./background.jpg",
 
         screen: 1
 
