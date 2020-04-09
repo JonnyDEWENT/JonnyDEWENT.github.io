@@ -4,16 +4,56 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<script>src=".\main.js"</script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDFE3KLO0wzwnbEHKH17tC80GDMpsAhcco",
+    authDomain: "budget-app-91a6d.firebaseapp.com",
+    databaseURL: "https://budget-app-91a6d.firebaseio.com",
+    projectId: "budget-app-91a6d",
+    storageBucket: "budget-app-91a6d.appspot.com",
+    messagingSenderId: "120296242079",
+    appId: "1:120296242079:web:9b5c9eee6435f92fb89baa"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var rootRef = firebase.database();
+
+
+  var userRef = rootRef.ref('users2');
+  var secondRef=userRef.child("hello")
+  var thirdRef = rootRef.ref('users2/whatsup')
+  thirdRef.set({value: "Hello World"})
+  userRef.set({value: "Hello World"})
+  secondRef.set({value: "hello world"})
+  
+</script>
+
+
+<!-- <script src="C:\Users\dewenjt\Desktop\CRAP\main.js"></script> -->
 <body style="text-emphasis-color: white">
+
+
+
   <div id="app">
     <v-app>
 
       <!-- <v-content style="background-color: rgb(47, 55, 77)"> -->
-          <v-content v-if="screen === 1" style="margin-top:0%;  background-position: center; background-color: rgb(47, 55, 77); height: 100%; background-image: url(./background.jpg) " >
-            <!-- background-image: url(./background.jpg) -->
+          <v-content v-if="screen === 1" style=" background-position: center; background-color: rgb(47, 55, 77); height: 70%; background-image: url(./background4.jpg) " >
+           
+            
         <!-- This is the rendering section for computers lg & up -->
         <v-container  >
           <template name>
@@ -21,8 +61,38 @@
 
               <!-- Creating Menu -->
               <v-toolbar class="white--text" color="black">
-                  <v-menu transition="slide-y-transition" offset-y class="hidden-lg-and-up">
-                      <v-btn slot="activator" style="background-color: rgb(47, 55, 77)" dark align-content="center">
+
+                <template>
+                  <div class="text-center hidden-lg-and-up">
+                    <v-menu>
+                      <template v-slot:activator="{ on: menu }">
+                        <v-tooltip bottom>
+                          <template v-slot:activator="{ on: tooltip }">
+                            <v-btn
+                              color="primary"
+                              dark
+                              v-on="{ ...tooltip, ...menu }"
+                            >Menu </v-btn>
+                          </template>
+                          <span>Im A ToolTip</span>
+                        </v-tooltip>
+                      </template>
+                      <v-list>
+                        <v-list-item
+                          v-for="(item, index) in items"
+                          :key="index"
+                          @click="screen = index+1"
+                        >
+                          <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
+                  </div>
+                </template>
+
+
+                  <v-menu transition="slide-y-transition" offset-y >
+                      <v-btn slot:activator="{ on }" style="background-color: rgb(47, 55, 77)" dark align-content="center">
                         Options
                       </v-btn>
                       <v-list>
@@ -33,13 +103,12 @@
                     </v-menu>
 
                 </v-toolbar-side-icon>
-                <v-toolbar-title class="xs3 white--text">Jon DeWent</v-toolbar-title>
+                
                 <v-spacer></v-spacer>
                 <v-toolbar-items class="hidden-md-and-down">
-                    <v-btn class="white--text" flat @click="screen = 1"><v-icon>home</v-icon></v-btn>
-                  <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
-                  <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
-                  <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
+                    <v-btn class="white--text" text @click="screen = 1"><v-icon>home</v-icon></v-btn>
+                  <v-btn class="white--text" text @click="screen = 2">Projects</v-btn>
+                  <v-btn class="white--text" text @click="screen = 3">Experience</v-btn>
 
                 </v-toolbar-items>
 
@@ -50,70 +119,63 @@
 
           <!-- Body layout -->
 
-
-
-          <!-- Home Screen -->
-          <v-layout v-if="screen === 1" style="background-color:transparent; height: 60% " row wrap >
-
- 
-
-          </v-layout>
-
-                  <v-layout>
-                      <v-flex class="pa-1">
-
-                          <v-card style="align-content: center">
-             
-                              </v-card>
-
-                      </v-flex>
-                    </v-layout>
-                </template>
-              </v-flex>
-            </v-layout>
-
-
           <!-- About Me -->   
-           <v-layout  v-if="screen === 1" style="background-color: transparent " row  wrap justify-center align-center >
+           <v-layout   style="background-color: transparent;  text-align: center; "   row wrap justify-center align-center >
+                
+            <v-flex lg12 md12 xl9 justify-center align-center >
+              <v-layout style=" background-color: transparent; text-align: center; " column >
+                <v-flex lg12 md9 sm9 xs9  class = "pa-1" r>
+                      <v-flex class = "pa-3">
+        
 
-
-
-                <v-flex lg9 md9 xl6>
-                  <v-layout style="background-color: transparent; text-align: center;" column >
-                    <v-flex lg9 md9 sm9 xs9 class class = "pa-1">
-                          <v-flex class = "pa-3">
-            
-    
-                            <v-card style="margin-top: 60%; align-content: center; background-color: rgb(47, 55, 77)"   class="white--text">
-                                <v-card-title primary-title justify-center>
+                        <v-card style="margin-top: 50%; align-content: center; background-color: whitesmoke; justify-content: center;"  justify-center align-center shaped >
+                            <v-card-title primary-title justify-center class="justify-center"></v-card-title>
+                              <div>
+                                  
+                                <div class="text-xs-center" justify-center align-center style="margin-bottom: 15px; color: rgb(14, 12, 12);"><h3>
+                                  Hi my name is Jon! <br> I am a software developer from West Michigan.<br><br></h3>
+                                  <p>I currently specialize in .NET development but have some experience with many other languages - Hence the Vue.js website.<br>
+                                  Please Feel free to contact me at jon.dewent@gmail.com or</p> 
                                   <div>
-                                      
-                                    <div class="text-xs-center" justify-center><h2>
-                                      Hi! I am a software developer who knows the importance of adaptability and understanding the world beyond
-                                      the application.<br></h2>
-                                    
-                                    </div>
-                                    <v-btn color="info">Facebook</v-btn> 
-                                    <v-btn class="white--text" color="indigo">LinkedIn</v-btn>
+                                    <!-- <v-btn color="info" >Facebook</v-btn>  -->
+                                    <v-btn class="white--text" color="indigo" onclick="window.location.href = 'https://www.linkedin.com/in/jon-dewent-247088136'">LinkedIn</v-btn>
                                     <v-btn class="white--text" color="black">Github</v-btn>
                                   </div>
+                               
+                                </div>
                                 
-                              </v-card>
-    
-                          </v-flex>
-                         
-                    </v-flex>
-                  </v-layout>
+                                
+                              
+                              </div>
+                            
+                          </v-card>
+
+                      </v-flex>
+                     
                 </v-flex>
+              </v-layout>
+            </v-flex>
+          
 
                   </v-layout> 
+
+
         </v-container>
+
+        <v-layout  v-if="screen === 1" style="background-color: transparent;  text-align: center; "   row wrap justify-center align-center >
+
+
           </v-content>
-          <v-content v-if="screen != 1">
+
+
+          <!-- Projects Section -->
+          <v-content v-if="screen == 3">
+
+
             <v-container>
                 <v-toolbar class="white--text" color="black">
                     <v-menu transition="slide-y-transition" offset-y class="hidden-lg-and-up">
-                        <v-btn slot="activator" style="background-color: rgb(47, 55, 77)" dark align-content="center">
+                        <v-btn slot:activator="{ on }"  style="background-color: rgb(47, 55, 77)" dark align-content="center">
                           Options
                         </v-btn>
                         <v-list>
@@ -127,82 +189,148 @@
                   <v-toolbar-title class="xs3 white--text">Jon DeWent</v-toolbar-title>
                   <v-spacer></v-spacer>
                   <v-toolbar-items class="hidden-md-and-down">
-                      <v-btn class="white--text" flat @click="screen = 1"><v-icon>home</v-icon></v-btn>
-                    <v-btn class="white--text" flat @click="screen = 2">Projects</v-btn>
-                    <v-btn class="white--text" flat @click="screen = 3">About Me</v-btn>
-                    <v-btn class="white--text" flat @click="screen = 4">Experience</v-btn>
+                      <v-btn class="white--text" text @click="screen = 1"><v-icon>home</v-icon></v-btn>
+                    <v-btn class="white--text" text @click="screen = 2">Projects</v-btn>
+                    
+                    <v-btn class="white--text" text @click="screen = 4">Experience</v-btn>
   
                   </v-toolbar-items>
   
                 </v-toolbar>
               </v-flex>
             </template>
-          <v-layout class = "pa-2" v-if="screen === 3" style="background-color:transparent; text-align: center" row  wrap justify-center>
+       
 
-              <v-flex  md4 lg4 xl3  class="pa-3" align-center justify-center style="align-content: center; text-align: center">
-                
-                  
-                  <v-card   class="white--text"class="pa-2" style="align-content: center; background-color: rgb(47, 55, 77)">
-                      <v-layout  class="text-xs-center" style="background-color: rgb(246, 247, 250)" column justify-center align-center>
-                          <v-flex lg5 md5 sm6 xs6 class ="pa-2" color="indigo" >
-                            <v-img :src="`gvsu.png`" aspect-ratio="1.8" size="3" transition="slide-x-transition" width="150px" >
-                          </v-flex>
-                          
-                        </v-layout>
-                        <v-layout column class="text-xs-center" justify-center align-center>
-                      <v-card-title primary-title >
-                        <div>
-                            
-                          <div style="text-align: center"><h3>
-                            Bachelor's of Science in Computer Science from Grand Valley State University</h3>
-                            
-                          </h3>
-                          </div>
-                        </div>
-                      </v-card-title>
+            <template>
+              <v-timeline :dense="$vuetify.breakpoint.smAndDown">
+                <v-timeline-item
+                  color="purple lighten-2"
+                  fill-dot
+                  right
+                >
+                  <v-card>
+                    <v-card-title  class="purple lighten-2">
+                     
+                      <h2 style="white-space: pre-wrap; word-break: keep-all;" class="display-1 white--text font-weight-light">Programmer Analyst Arconic/Howmet Aerospace (2019 - Present)</h2>
+                    </v-card-title>
+                    <v-container>
+                      <v-row>
+                        <v-col >
+                          In 2019 I began working full time as a Programmer Analyst at Arconic. 
+                          This position entailed developing software solutions from start to finish, assisting in creation of reports and analytical tools, and mentoring interns.
+                          While in this role I developed many applications including a manufacturing system for a department that had no digital trace. Using this system I also created
+                          an interactive display board application used for visualizing routing analytics including forecasting, piece queues, and standard vs. actual operation time analysis.
+                          In August of 2019 I recieved a continuous improvement award for developing a net production and labor utilization report for the leadership team of the whitehall sector.
 
-                    </v-layout>
-                    </v-card>
-                    
-                    </v-flex>
-              <v-flex color="indigo" class="text-xs-center" md9 lg9 xl9 style="align-content: center" >
-                <template>
-                  <v-layout >
-                    <v-flex class = "pa-3">
-                      <!-- <h1>Hobbies</h1> -->
+                        </v-col>
+                        <!-- <v-col
+                          class="hidden-sm-and-down text-right"
+                          md="2"
+                        > -->
+                          <!-- <v-icon size="64">mdi-calendar-text</v-icon>
+                        </v-col> -->
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-timeline-item>
+            
+                <v-timeline-item
+                  color="amber lighten-1"
+                  fill-dot
+                  left
+                  small
+                >
+                  <v-card>
+                    <v-card-title class="amber lighten-1 justify-end">
+                      <h2 class="display-1 mr-4 white--text font-weight-light">IT Intership at Arconic (2018)</h2>
+                     
+                    </v-card-title>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          In 2018 I accepted an I.T. internship at Arconic. Within the first 2 months I was offered a full-time position as a Programmer Analyst
+                        </v-col>
+                       
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-timeline-item>
+            
+                <v-timeline-item
+                  color="cyan lighten-1"
+                  fill-dot
+                  right
+                >
+                  <v-card>
+                    <v-card-title class="cyan lighten-1">
+                      <v-icon
+                        class="mr-4"
+                        dark
+                        size="42"
+                      >
+                        mdi-email-outline
+                      </v-icon>
+                      <h2 class="display-1 white--text font-weight-light">Grand Valley State University (2017 - 2018)</h2>
+                    </v-card-title>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          In 2017 I transferred to GVSU to pursue a B.S. in Computer Science. After taking the first introductory course I immediately fell in love with programming.
+                          I was excited to not only further my skills, but learn and discover how these skills could be applied to develop real-world solutions.
+                          In 2 short years I graduated Cum Laude with a 3.84 GPA.
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-timeline-item>
+            
+                <v-timeline-item
+                  color="red lighten-1"
+                  fill-dot
+                  left
+                  small
+                >
+                  <v-card>
+                    <v-card-title class="red lighten-1 justify-end">
+                      <h2 class="display-1 mr-4 white--text font-weight-light">Muskegon Community College (2016)</h2>
                       
-                      <!-- Backpacking Card -->
-                      <v-card style="align-content: center; background-color: rgb(47, 55, 77); text-align: center" class="white--text" justify-center md9 lg9>
-                        <v-card-title style="text-align: center; align-content: center" class="justify-center"> <h3>When I'm not programming I like to go hiking, backpacking, and running with my
-                          wife.</h3></v-card-title>
+                    </v-card-title>
+                    <v-container>
+                      <v-row>
+                        <!-- <v-col class="hidden-sm-and-down" md="2">
+                          <v-icon size="64">mdi-server-network</v-icon>
+                        </v-col> -->
+                        <v-col>
+                         In 2016 I went to Muskegon Community College to earn my general education credits before transfering to Grand Valley State University.
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-timeline-item>
+            
+                <v-timeline-item
+                  color="green lighten-1"
+                  fill-dot
+                  right
+                >
+                  <v-card>
+                    <v-card-title class="green lighten-1">
+                      
+                      <h2 class="display-1 white--text font-weight-light">Chase Harvesting (2012 - 2016)</h2>
+                    </v-card-title>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          From 2012 to 2016 I worked harvesting green beans across Michigan. At the end of the 5th season I decided to go back to school to earn a degreen in computer science.
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-timeline-item>
+              </v-timeline>
+            </template>
 
-                        <template>
-                            <v-carousel style="height: 380px">
-                              <v-carousel-item
-                                v-for="(item,i) in backpacking"
-                                :key="i"
-                                :src="item"
-                              ></v-carousel-item>
-                            </v-carousel>
-                          </template>
-                        
-                      </v-card>
-                    </v-flex>
-                  </v-layout>
-                  <v-layout>
-                      <v-flex class="pa-1">
-
-                          <v-card style="align-content: center">
-    
-
-                            
-                              </v-card>
-
-                      </v-flex>
-                    </v-layout>
-                </template>
-              </v-flex>
-            </v-layout>
+            </v-layout> 
             <!-- End of About Me -->
 
         </v-container>
@@ -212,39 +340,51 @@
     </v-app>
   </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script>
+
+
+  <!-- This is the javascript (Vue.js) section of the website -->
+
   
-    new Vue({
-      el: '#app',
-      vuetify: new Vuetify(),
-      data: {
-        items: [
-          // "Home", "Christmas Wish-List"
-          "Home", "Projects", "About Me", "Experience"
-        ],
-
-          backpacking: [
-          "yosemite.jpg", "yosemite2.jpg","yosemite4.jpg", "colorado.jpg","colorado2.jpg","colorado3.jpg","race.jpg","race2.jpg","race3.jpg","race4.jpg"
-        ],
-        myImage: "./background.jpg",
-
-        screen: 1
-
-      },
-      methods: {
-      play() {
-        screen = 5;
-        var audio = document.getElementById("audio");
-        audio.play();
-    }
-      }
-    });
-
-    
+   
+    <script>
   </script>
+<script>
 
+  window.onload = function () {
+new Vue({
+  el: '#app',
+  vuetify: new Vuetify(),
+  data: {
+    items: [
+      // "Home", "Christmas Wish-List"
+      {title: "Home"}, {title: "Projects"}, {title: "Experience"}
+    ],
+
+    answers: [
+      // "Home", "Christmas Wish-List"
+      {name: "Jon", answer: "Coati" }
+
+    ],
+
+      backpacking: [
+      "yosemite.jpg", "yosemite2.jpg","yosemite4.jpg", "colorado.jpg","colorado2.jpg","colorado3.jpg","race.jpg","race2.jpg","race3.jpg","race4.jpg"
+    ],
+    myImage: "./background2.jpg",
+
+    screen: 1
+
+  },
+  methods: {
+  play() {
+    screen = 5;
+    var audio = document.getElementById("audio");
+    audio.play();
+    
+}
+  }
+});
+  }
+</script>
   <script>
         
         // var audio = document.getElementById("audio");
