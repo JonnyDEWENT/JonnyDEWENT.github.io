@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+
+<script src=".\main.js"></script>
+
+<body style="text-emphasis-color: white">
+
+
+  <div id="app">
+    <v-app>
+
+      <v-content>
+        <v-container>
+          <template>
+            <v-form>
+              <!-- screen 2 MAIN SCREEN -->
+              <v-container v-if="screen === 2" >
+                <v-row>
+                  <v-col md3 lg3 xl3>
+                    <template>
+                      <v-navigation-drawer permanent style="left:0%; position: fixed">
+                        <v-list-item>
+                          <v-list-item-content>
+                            <v-btn @click="updateNavBar">Save</v-btn>
+                            <v-list-item-title class="title">
+                              <v-text-field v-model="appTitle"></v-text-field>
+                            </v-list-item-title>
+                            <v-list-item-subtitle>
+                              <v-text-field v-model="subTitle"></v-text-field>
+                            </v-list-item-subtitle>
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
+
+                        <v-list dense nav>
+                          <v-list-item v-for="(item, index) in tabs" :key="item.title" link
+                            @click="option = index; getCards(option)">
+                            <v-list-item-icon>
+                              <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-item-icon>
+
+                            <v-list-item-content>
+                              <v-list-item-title v-model="item.title">{{item.title}}</v-list-item-title>
+                            
+                            </v-list-item-content>
+                          </v-list-item>
+                          <v-list-item>
+                            <v-text-field v-model="newItem"></v-text-field>
+                            <v-btn @click="addToNavBar(newItem)">
+                              <v-icon>mdi-plus</v-icon>
+                            </v-btn>
+                          </v-list-item>
+                        </v-list>
+                      </v-navigation-drawer>
+                    </template>
+                  </v-col>
+
+
+                  <v-col md="9">                 
+                      <v-container v-if="option === index"  v-for="(item,index) in tabs" 
+                      >
+                      <v-row class="pa-2" >
+                      <v-btn @click="tabs.splice(index,1); updateNavBar()">DELETE</v-btn>
+                    </v-row>
+
+                        <v-row class="pa-2" >
+
+                          <v-text-field v-model="item.title"></v-text-field>
+
+                        </v-row>
+
+                        <v-row class="pa-2">
+
+                          <template>
+                            <v-row justify="center">
+                              <v-dialog v-model="dialog" persistent max-width="600px">
+                                <template v-slot:activator="{ on }">
+                                  <v-btn color="primary" dark v-on="on">
+                                    <v-icon>mdi-plus</v-icon>
+                                  </v-btn>
+                                </template>
+                                <v-card>
+                                  <v-card-title>
+                                    <span class="headline">New Card</span>
+                                  </v-card-title>
+                                  <v-card-text>
+                                    <v-container>
+                                      <v-row>
+                                        <v-col cols="12" sm="6" md="4">
+                                          <v-text-field label="Title" v-model="newCardTitle" required></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                          <v-text-field label="Sub Title" v-model="newCardSubTitle"></v-text-field>
+                                        </v-col>
+                                      </v-row>
+                                      <v-row>
+                                        <v-textarea label="Description" hint="Type description here" v-model="newText">
+                                        </v-textarea>
+                                      </v-row>
+                                      <v-row>
+                                        <template>
+                                          <v-file-input
+                                            label="File input"
+                                            filled
+                                            prepend-icon="mdi-camera"
+                                            v-model="newImage"
+                                          ></v-file-input>
+                                        </template>
+                                      </v-row>
+                                    </v-container>
+                                    <small>*indicates required field</small>
+                                  </v-card-text>
+                                  <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+                                    <v-btn color="blue darken-1" text @click="dialog = false; saveNewCard(item)">Save
+                                    </v-btn>
+                                  </v-card-actions>
+                                </v-card>
+                              </v-dialog>
+                            </v-row>
+                          </template>
+                        </v-row>
+
+                        <v-row v-for="(card,index) in item.cards" class="pa-2">
+                          <v-card md9 lg9 xl9 fluid class="mx-auto" width="100%">
+                            <h1>{{card.title}}</h1>
+                            <h3>{{card.subtitle}}</h3>
+                            <p>{{card.text}}</p>
+                          </v-card>
+                        </v-row>
+
+                      </v-container>
+                    
+
+                </v-row>
+              </v-container>
+
+              <!-- End of the main screen section -->
+            </v-form>
+          </template>
+        </v-container>
+      </v-content>
+
+    </v-app>
+  </div>
+
+
+
+  <!-- This is the javascript (Vue.js) section of the website -->
+
+  <script>
+    var vue = startup()
+
+
+  </script>
+</body>
+
+</html>
