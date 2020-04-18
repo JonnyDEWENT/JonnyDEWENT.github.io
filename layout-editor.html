@@ -75,7 +75,7 @@
                       <v-container v-if="option === index"  v-for="(item,index) in tabs" 
                       >
                       <v-row class="pa-2" >
-                      <v-btn @click="tabs.splice(index,1); updateNavBar()">DELETE</v-btn>
+                      <v-btn @click="deleteFromNavBar(item)">DELETE</v-btn>
                     </v-row>
 
                         <v-row class="pa-2" >
